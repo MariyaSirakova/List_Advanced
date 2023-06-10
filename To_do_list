@@ -1,0 +1,14 @@
+You will be receiving to-do notes until you get the command "End". The notes will be in the format: 
+"{importance}-{note}". 
+Return a list containing all to-do notes sorted by importance in ascending order.
+
+
+command = input()
+final_result = []
+
+while command != 'End':
+    value, note = command.split('-')
+    final_result.append([int(value), note])
+    command = input()
+
+print([todo[1] for todo in sorted(final_result, key=lambda x:x[0])])
