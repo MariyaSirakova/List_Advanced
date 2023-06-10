@@ -1,0 +1,26 @@
+You will receive a number representing the number of wagons a train has. Create a list (train) with the given length 
+containing only zeros. Until you receive the command "End", you will receive some of the following commands:
+• "add {people}" – you should add the number of people in the last wagon
+• "insert {index} {people}" - you should add the number of people at the given wagon
+• "leave {index} {people}" - you should remove the number of people from the wagon. 
+
+length_train = int(input())
+train = [0] * length_train
+command = input().split()
+
+while command[0] != 'End':
+    if command[0] == 'add':
+        people = int(command[1])
+        train[-1] += people
+    elif command[0] == 'insert':
+        index = int(command[1])
+        people = int(command[2])
+        train[index] += people
+    elif command[0] == 'leave':
+        index = int(command[1])
+        people = int(command[2])
+        train[index] -= people
+
+    command = input().split()
+
+print(train)
