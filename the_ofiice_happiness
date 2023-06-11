@@ -1,0 +1,17 @@
+
+
+happiness = list(map(int, input().split()))
+improvement_factor = int(input())
+
+improvement_happiness = [happy * improvement_factor for happy in happiness]
+average_happiness = sum(improvement_happiness) / len(happiness)
+
+happy_count = [happy for happy in improvement_happiness if happy > average_happiness]
+
+happy_count = len(happy_count)
+total_count = len(happiness)
+
+if happy_count >= total_count / 2:
+    print(f'Score: {happy_count}/{total_count}. Employees are happy!')
+else:
+    print(f'Score: {happy_count}/{total_count}. Employees are not happy!')
