@@ -1,0 +1,8 @@
+Write a program that reads a single string with numbers separated by comma and space ", ". 
+Print the indices of all even numbers.
+
+numbers = [int(n) for n in input().split(", ")]
+
+index_even_numbers = [idx for idx, ele in enumerate(numbers) if ele % 2 == 0]
+
+print(index_even_numbers)
