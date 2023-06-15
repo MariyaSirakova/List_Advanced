@@ -1,0 +1,17 @@
+Read from the console a single line holding space-separated integers.
+
+1. Print the above-described numbers on a single line, space-separated. 
+2. If less than 5 numbers hold the property mentioned above, print less than 5 numbers. 
+3. Print "No" if no numbers hold the above property.
+
+numbers = [int(n) for n in input().split()]
+TOP_FIVE = 5
+average_value = int(sum(numbers) / len(numbers))
+average_numbers = sorted([n for n in numbers if n > average_value])
+
+if not average_numbers:
+    print('No')
+else:
+    for x in range(TOP_FIVE):
+        if average_numbers:
+            print(average_numbers.pop(), end=" ")
