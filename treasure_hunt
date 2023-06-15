@@ -1,0 +1,53 @@
+Create a program that manages the state of the treasure chest along the way. On the first line, you will receive the initial loot of the treasure chest, which is a string of items separated by a "|".
+"{loot1}|{loot2}|{loot3} … {lootn}"
+The following lines represent commands until "Yohoho!" which ends the treasure hunt:
+1. "Loot {item1} {item2}…{itemn}":
+  Pick up treasure loot along the way. Insert the items at the beginning of the chest. 
+  If an item is already contained, don't insert it.
+2. "Drop {index}":
+  Remove the loot at the given position and add it at the end of the treasure chest. 
+  If the index is invalid, skip the command.
+3. "Steal {count}":
+  Someone steals the last count loot items. If there are fewer items than the given count, remove as much as there are. 
+  Print the stolen items separated by ", ":
+  "{item1}, {item2}, {item3} … {itemn}"
+  
+In the end, output the average treasure gain, which is the sum of all treasure items length divided by the count of all items inside the chest:
+"Average treasure gain: {averageGain} pirate credits."
+If the chest is empty, print the following message:
+"Failed treasure hunt."
+
+
+initial_loot = input().split("|")
+
+while True:
+    command = input().split()
+    command_type = command[0]
+
+    if command_type == 'Yohoho!':
+        break
+    elif command_type == 'Loot':
+        for index, item in enumerate(command):
+            if index != 0 and item not in initial_loot:
+                initial_loot.insert(0, item)
+    elif command_type == 'Drop':
+        index = int(command[1])
+        if abs(index) < len(initial_loot):
+            initial_loot.append(initial_loot.pop(index))
+    elif command_type == 'Steal':
+        count_items = int(command[1])
+        stolen_item = initial_loot[-count_items :]
+        initial_loot = initial_loot[:-count_items]
+        print(*stolen_item, sep=", ")
+
+if initial_loot:
+    sum_items_length = 0
+    for treasure in initial_loot:
+        current_length = len(treasure)
+        sum_items_length += current_length
+
+    average_treasure_gain = sum_items_length / len(initial_loot)
+    print(f"Average treasure gain: {average_treasure_gain:.2f} pirate credits.")
+else:
+    print("Failed treasure hunt.")
+
