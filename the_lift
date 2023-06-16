@@ -1,0 +1,22 @@
+peoples = int(input())
+current_state_of_lift = [int(n) for n in input().split()]
+MAX_PEOPLE = 4
+
+for lift in range(len(current_state_of_lift)):
+    free_seats = MAX_PEOPLE - current_state_of_lift[lift]
+
+    if peoples >= free_seats:
+        current_state_of_lift[lift] += free_seats
+    else:
+        current_state_of_lift[lift] += peoples
+
+    peoples -= free_seats
+
+    if peoples <= 0 and (lift != len(current_state_of_lift) - 1 or current_state_of_lift[lift] < MAX_PEOPLE):
+        print("The lift has empty spots!")
+        break
+else:
+    if peoples > 0:
+        print(f"There isn't enough space! {peoples} people in a queue!")
+
+print(*current_state_of_lift)
