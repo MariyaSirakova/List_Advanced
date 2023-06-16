@@ -1,0 +1,16 @@
+count_of_rooms = int(input())
+free_chairs_left = 0
+needed_chairs = 0
+
+for room in range(1, count_of_rooms + 1):
+    free_chairs_in_current_room, count_of_visitors = input().split()
+    difference = len(free_chairs_in_current_room) - int(count_of_visitors)
+
+    if difference < 0:
+        print(f'{abs(difference)} more chairs needed in room {room}')
+        needed_chairs += abs(difference)
+    else:
+        free_chairs_left += difference
+
+if free_chairs_left >= needed_chairs:
+    print(f"Game On, {free_chairs_left} free chairs left")
