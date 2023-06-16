@@ -1,0 +1,12 @@
+first_line = input().split(", ")
+second_line = input().split(", ")
+
+substring = []
+
+for element in first_line:
+    for item in second_line:
+        if element in item:
+            substring.append(element)
+            break
+
+print(substring)
