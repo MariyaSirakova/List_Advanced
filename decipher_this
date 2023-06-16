@@ -1,0 +1,17 @@
+message = input().split()
+new_message = []
+
+for word in message:
+    letters = []
+    numbers = ""
+    for symbol in word:
+        if symbol.isdigit():
+            numbers += symbol
+        else:
+            letters.append(symbol)
+
+    letters[0], letters[-1] = letters[-1], letters[0]
+    new_word = chr(int(numbers)) + "".join(letters)
+    new_message.append(new_word)
+
+print(" ".join(new_message))
