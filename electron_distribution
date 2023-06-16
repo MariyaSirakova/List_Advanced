@@ -1,0 +1,15 @@
+number_of_electron = int(input())
+filled_shells = []
+index = 0
+while index < number_of_electron:
+    index += 1
+    shell_capacity = 2 * index ** 2
+
+    if number_of_electron >= shell_capacity:
+        filled_shells.append(shell_capacity)
+        number_of_electron -= shell_capacity
+    else:
+        filled_shells.append(number_of_electron)
+        number_of_electron = 0
+
+print(filled_shells)
