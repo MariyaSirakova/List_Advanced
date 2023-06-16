@@ -1,0 +1,18 @@
+numbers = [int(num) for num in input().split(", ")]
+
+positive = [number for number in numbers if number >= 0]
+negative = [number for number in numbers if number < 0]
+even = [number for number in numbers if number % 2 == 0]
+odd = [number for number in numbers if number % 2 != 0]
+
+print('Positive:', end=" ")
+print(*positive, sep=", ")
+
+print('Negative:', end=" ")
+print(*negative, sep= ", ")
+
+print('Even:', end=" ")
+print(*even, sep=", ")
+
+print(f'Odd:', end=" ")
+print(*odd, sep=", ")
