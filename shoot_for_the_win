@@ -1,0 +1,42 @@
+Write a program that helps you keep track of your shot targets. You will receive a sequence with integers, 
+separated by a single space, representing targets and their value.
+
+Afterward, you will be receiving indices until the "End" command is given, and you need to print the targets and the count of shot targets.
+
+Every time you receive an index, you need to shoot the target on that index, if it is possible. 
+Every time you shoot a target, its value becomes -1, and it is considered shot. Along with that, you also need to:
+    1.Reduce all the other targets, which have greater values than your current target, with its value. 
+    2.Increase all the other targets, which have less than or equal value to the shot target, with its value.
+Keep in mind that you can't shoot a target, which is already shot. You also can't increase or reduce a target, which is considered shot.
+
+When you receive the "End" command, print the targets in their current state and the count of shot targets in the following format:
+"Shot targets: {count} -> {target1} {target2}… {targetn}"
+
+
+target_line = [int(n) for n in input().split()]
+command = input()
+
+while command != 'End':
+    target_index = int(command)
+
+    if 0 <= target_index < len(target_line):
+        current_target = target_line[target_index]
+        target_line[target_index] = -1
+
+        for i in range(len(target_line)):
+            if target_line[i] == -1:
+                continue
+
+            if target_line[i] > current_target:
+                target_line[i] -= current_target
+            else:
+                target_line[i] += current_target
+
+    command = input()
+
+print(f'Shot targets: {sum(1 for x in target_line if x == -1)} ->', *target_line)
+
+
+
+
+
