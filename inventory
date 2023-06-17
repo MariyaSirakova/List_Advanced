@@ -1,0 +1,41 @@
+You will receive a journal with some collecting items, separated with a comma and a space (", "). 
+After that, until receiving "Craft!" you will be receiving different commands split by " - ":
+    1."Collect - {item}" - you should add the given item to your inventory. If the item already exists, you should skip this line.
+    2."Drop - {item}" - you should remove the item from your inventory if it exists.
+    3."Combine Items - {old_item}:{new_item}" - you should check if the old item exists. If so, add the new item after the old one. Otherwise, ignore the command.
+    4."Renew – {item}" – if the given item exists, you should change its position and put it last in your inventory.
+
+
+some_items = input().split(", ")
+command = input()
+
+while command != 'Craft!':
+    action, item = command.split(" - ")
+
+    if action == 'Collect':
+        if item not in some_items:
+            some_items.append(item)
+
+    elif action == 'Drop':
+        if item in some_items:
+            some_items.remove(item)
+
+    elif action == 'Combine Items':
+        old_item, new_item = item.split(":")
+        if old_item in some_items:
+            old_item_index = some_items.index(old_item)
+            some_items.insert(old_item_index + 1, new_item)
+
+    elif action == 'Renew':
+        if item in some_items:
+            item = some_items.pop(some_items.index(item))
+            some_items.append(item)
+
+    command = input()
+
+print(*some_items, sep=", ")
+
+
+
+
+
